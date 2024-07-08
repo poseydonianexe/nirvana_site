@@ -1,17 +1,28 @@
 const express = require("express")
+const ejs = require("ejs");
+const path = require("path");
+
 const app = express()
-// const ejs = require("ejs")
+app.use(express.json())
+app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, 'public')));
 
-const port = 4000
+// const productRoutes = require("./routes/productRoutes")
+// const userRoutes = require("./routes/userRoutes")
+// const favoriteRoutes = require("./routes/favoriteRoutes")
+// const basketRoutes = require("./routes/basketRoutes")
 
-app.set("view engine","ejs")
-
-
-app.get("/",(req,res)=>{
-    console.log("dsds")
+app.get("/", (req, res)=>{
     res.render("index")
-    
 })
-app.listen(port,()=>{
-    console.log("ehehhehe")
+
+// app.use("/products", productRoutes)
+// app.use("/users", userRoutes)
+// app.use("/favorites", favoriteRoutes)
+// app.use("/baskets", basketRoutes)
+
+
+const PORT = 4000
+app.listen(PORT, ()=>{
+    console.log(`APP is listening on ${PORT}`);
 })
